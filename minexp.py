@@ -32,7 +32,7 @@ def needed(level):
 
 
 def diagnostico(level):
-    print "Tienes %d puntos exp y necesitas %d puntos para el siguiente nivel.\n\n" % (obtained(level), needed(level))
+    print "You have %d exp points and need %d points to the next level.\n\n" % (obtained(level), needed(level))
 
 def error(s):
     if s == "numargs":
