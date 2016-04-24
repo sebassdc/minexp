@@ -4,7 +4,7 @@ __author__ = 'sebassdc'
 
 import sys, os
 
-
+# Clears() helps to easy clean screan in various platforms.
 def clears():
     plat = sys.platform
     if plat.startswith('win'):
@@ -12,7 +12,7 @@ def clears():
     else:
         os.system('clear')
 
-
+# Calculate how many xp points has been obtained given de levels
 def obtained(level):
     if level <= 16:
         return 17 * level
@@ -21,7 +21,7 @@ def obtained(level):
     else:
         return 3.5 * level ** 2 - 151.5 * level + 2220
 
-
+# Calculate how many xp points you need to increase yout level
 def needed(level):
     if level <= 16:
         return 17
@@ -30,10 +30,12 @@ def needed(level):
     else:
         return (7 * level) - 148
 
-
+# Makes a diagnostic
 def diagnostico(level):
-    print "Tienes %d puntos exp y necesitas %d puntos para el siguiente nivel.\n\n" % (obtained(level), needed(level))
+    print "You have %d exp points and need %d points to the next level.\n\n" % (obtained(level), needed(level))
 
+
+# print a few common errors
 def error(s):
     if s == "numargs":
         print "Incorrect number of arguments\n\n"
@@ -44,11 +46,16 @@ def error(s):
         print "Unknowed option\n\n"
         help()
 
+
+# App help
 def help():
     helper_list = "minexp use: \n minexp [option] [level]\n Options:\n [-o: obtained, -n: How many i need?, -d: diagnosis, -h: help]\n\n"
     print helper_list
 
 
+# MAKING A FRIENDLY CLI
+
+# This interafce shows a little menu
 def interfaz1():
     menu1 = "What do you wany?\n1. Check obtained experience\n2. How many i need for the next level?\n3. Run a diagnosis? \n4. Quit\n"
     while True:
@@ -76,6 +83,8 @@ def interfaz1():
             error("nomenu")
 
 
+# This run a diagnosis by default
+# Either shows the help
 def interfaz2():
     level = sys.argv[1]
     if level == '-h' or level == 'help':
@@ -83,6 +92,8 @@ def interfaz2():
     else:
         diagnostico(int(level))
 
+
+# Given the option this interface shows specifically what do you want
 def interfaz3():
     level = int(sys.argv[2])
     option = sys.argv[1]
@@ -97,7 +108,8 @@ def interfaz3():
 
 
 if __name__ == "__main__":
-    longi = len(sys.argv)
+
+    longi = len(sys.argv) # checking how many args we hnndle
     if longi == 1:
         interfaz1()
     elif longi == 2:
